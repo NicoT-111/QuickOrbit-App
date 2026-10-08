@@ -1,0 +1,8 @@
+.DS_Store
+.build-QuickOrbit/
+Vendor/Sparkle/
+QuickOrbit.app/
+QuickOrbit-v*.zip
+QuickOrbit-v*.dmg
+Updates/
+*.key
