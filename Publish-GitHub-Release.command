@@ -14,8 +14,8 @@ if [[ ! -f "$notes" ]]; then
     exit 1
 fi
 
-"$release_root/Build.command"
-"$release_root/Generate-Update-Feed.command"
+/bin/zsh "$release_root/Build.command"
+/bin/zsh "$release_root/Generate-Update-Feed.command"
 feed="$release_root/Updates/appcast.xml"
 
 echo ""

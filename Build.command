@@ -10,7 +10,7 @@ asset_catalog="$release_root/Resources/Assets.xcassets"
 asset_output="$build_dir/AssetOutput"
 sparkle_root="$release_root/Vendor/Sparkle"
 if [[ ! -d "$sparkle_root/Sparkle.framework" ]]; then
-    "$release_root/Fetch-Sparkle.command"
+    /bin/zsh "$release_root/Fetch-Sparkle.command"
 fi
 release_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$release_root/Packaging/Info.plist")"
 archive_name="QuickOrbit-v${release_version}.zip"
