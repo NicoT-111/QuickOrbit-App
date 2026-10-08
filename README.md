@@ -10,6 +10,6 @@ Ab Version 57 fragt die App den signierten `appcast.xml`-Feed des neuesten Relea
 
 ## Quellcode und Rechte
 
-Der Quellcode ist hier zur Einsicht veröffentlicht; es wird **keine Open-Source-Lizenz** erteilt. Bitte [COPYRIGHT.md](COPYRIGHT.md) lesen. Eine Veröffentlichung auf GitHub ist keine Erlaubnis, die App oder den Code zu kopieren, zu verändern oder weiterzuverbreiten. Die unveränderte offizielle App darf für den eigenen Gebrauch genutzt werden. Rechte von Drittanbietern bleiben unberührt.
+Der Quellcode ist hier zur Einsicht veröffentlicht; es wird **keine Open-Source-Lizenz** erteilt. Bitte [COPYRIGHT.md](COPYRIGHT.md) lesen. Das Ansehen und Forken innerhalb von GitHub bleibt nach dessen Nutzungsbedingungen möglich; darüber hinaus ist die Veröffentlichung keine Erlaubnis, die App oder den Code zu verändern oder weiterzuverbreiten. Die unveränderte offizielle App darf für den eigenen Gebrauch genutzt werden. Rechte von Drittanbietern bleiben unberührt.
 
 Zum lokalen Bauen `Build.command` verwenden. Es lädt bei Bedarf Sparkle 2.10.0 von dessen offizieller Release-Seite und prüft die SHA-256-Prüfsumme. Der private Updateschlüssel ist **nicht** Teil dieses Repositorys. Öffentliche Releases für andere Macs sollten mit Developer ID signiert und von Apple notarisiert sein; lokale Test-Builds werden nur ad-hoc signiert.
