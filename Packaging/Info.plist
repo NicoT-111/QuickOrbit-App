@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>de</string>
+    <key>CFBundleDisplayName</key>
+    <string>QuickOrbit</string>
+    <key>CFBundleExecutable</key>
+    <string>QuickOrbit</string>
+    <key>CFBundleIdentifier</key>
+    <string>de.nico.quickorbit</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>QuickOrbit</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>57</string>
+	<key>CFBundleVersion</key>
+	<string>57</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>QuickOrbit benötigt Zugriff, um von dir bestätigte Erinnerungen anzulegen.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>QuickOrbit benötigt Zugriff, um von dir bestätigte Kalendereinträge anzulegen.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>QuickOrbit verwendet Automation nur, wenn du eine eigene Beta-Funktion ausführst, die eine andere App wie Musik steuert.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2026 Nico. Alle Rechte vorbehalten.</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>SUFeedURL</key>
+    <string>https://github.com/NicoT-111/QuickOrbit-App/releases/latest/download/appcast.xml</string>
+    <key>SUPublicEDKey</key>
+    <string>GWA0ayg2F5v1/r8AJZ35wtUYtH/Wc5Z3g3jCv8LHzng=</string>
+    <key>SUEnableAutomaticChecks</key>
+    <true/>
+    <key>SUAutomaticallyUpdate</key>
+    <false/>
+    <key>SUAllowsAutomaticUpdates</key>
+    <true/>
+    <key>SUScheduledCheckInterval</key>
+    <integer>21600</integer>
+    <key>SUSendProfileInfo</key>
+    <false/>
+    <key>SUVerifyUpdateBeforeExtraction</key>
+    <true/>
+    <key>SURequireSignedFeed</key>
+    <true/>
+</dict>
+</plist>
