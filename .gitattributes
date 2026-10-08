@@ -1,10 +1,1 @@
-*.swift export-ignore
-*.command export-ignore
-Packaging export-ignore
-Resources export-ignore
-Tools export-ignore
-Vendor export-ignore
-GitHub-Release export-ignore
-.gitignore export-ignore
-.gitattributes export-ignore
-COPYRIGHT.md export-ignore
+QuickOrbit-Source-v*.zip export-ignore
