@@ -9,6 +9,10 @@ module_cache="$build_dir/ModuleCache"
 asset_catalog="$release_root/Resources/Assets.xcassets"
 asset_output="$build_dir/AssetOutput"
 sparkle_root="$release_root/Vendor/Sparkle"
+if [[ "$(/usr/libexec/PlistBuddy -c 'Print :com.apple.security.network.client' "$release_root/Packaging/QuickOrbit.entitlements" 2>/dev/null)" != "true" ]]; then
+    echo "Update-Build abgebrochen: Die App benötigt com.apple.security.network.client für den Update-Feed." >&2
+    exit 1
+fi
 if [[ ! -d "$sparkle_root/Sparkle.framework" ]]; then
     /bin/zsh "$release_root/Fetch-Sparkle.command"
 fi
