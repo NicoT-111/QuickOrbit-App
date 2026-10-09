@@ -1,12 +1,12 @@
 # QuickOrbit
 
-QuickOrbit ist eine macOS-App mit Orbit, Schnellleiste und lokalen Aktionen. Die [Website](https://nicot-111.github.io/QuickOrbit/) bleibt im bisherigen Web-Repository. **Die App und ihre zukünftigen Releases liegen hier.**
+QuickOrbit ist eine macOS-App mit Orbit, Schnellleiste und lokalen Aktionen. Die [Website](https://nicot-111.github.io/QuickOrbit-Website/) liegt in einem eigenen Repository. **Die App und ihre Releases liegen hier.**
 
 Die jeweils aktuelle, fertig gebaute App steht unter [Releases](https://github.com/NicoT-111/QuickOrbit-App/releases). Für die manuelle Installation die ZIP herunterladen, entpacken und `QuickOrbit.app` nach „Programme“ ziehen. Die App benötigt macOS 14 oder neuer. Manche Aktionen benötigen eine gesonderte macOS-Freigabe.
 
 ## Updates
 
-Ab Version 57 fragt die App den signierten `appcast.xml`-Feed des neuesten Releases in diesem Repository ab. Für jedes Release werden `QuickOrbit-v<Version>.zip` und `appcast.xml` gemeinsam veröffentlicht. Bereits installierte Version 56 nutzt noch den Feed im bisherigen Repository; dafür ist eine einmalige Feed-Brücke erforderlich. Details stehen in [Update-Einrichtung](GitHub-Release/UPDATE-EINRICHTUNG.md).
+Ab Version 58 kann die sandboxed App den signierten `appcast.xml`-Feed des neuesten Releases in diesem Repository laden. Für jedes Release werden `QuickOrbit-v<Version>.zip` und `appcast.xml` gemeinsam veröffentlicht. Version 57 hatte keine Netzwerkberechtigung und kann sich deshalb nicht selbst aktualisieren; Version 56 nutzt außerdem den nicht mehr erreichbaren Feed im alten Repository. Beide Versionen müssen einmalig manuell durch v58 ersetzt werden. Details stehen in [Update-Einrichtung](GitHub-Release/UPDATE-EINRICHTUNG.md).
 
 ## Quellcode und Rechte
 
