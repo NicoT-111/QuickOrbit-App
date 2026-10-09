@@ -1260,7 +1260,8 @@ private var quickOrbitVersionLabel: String {
     return cleaned.isEmpty ? "v56" : (cleaned.lowercased().hasPrefix("v") ? cleaned : "v" + cleaned)
 }
 
-private let quickOrbitWebsiteAddress = "https://nicot-111.github.io/QuickOrbit/"
+private let quickOrbitWebsiteAddress = "https://nicot-111.github.io/QuickOrbit-Website/"
+private let quickOrbitReleaseRepository = "NicoT-111/QuickOrbit-App"
 
 private var quickOrbitWebsiteURL: URL? {
     let value = quickOrbitWebsiteAddress.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -20775,13 +20776,19 @@ final class QuickOrbitUpdateCenter: NSObject, ObservableObject {
                 .sink { [weak self] value in self?.automaticChecks = value }.store(in: &observations)
             updater.publisher(for: \.automaticallyDownloadsUpdates).receive(on: RunLoop.main)
                 .sink { [weak self] value in self?.automaticInstallation = value }.store(in: &observations)
-            do { try updater.start() }
-            catch { setMessage("Updates konnten nicht gestartet werden.", "Updates could not be started.") }
-            return
+            do {
+                try updater.start()
+                return
+            } catch {
+                updaterController = nil
+                observations.removeAll()
+                canCheck = true
+                setMessage("Signierte Updates konnten nicht gestartet werden. GitHub-Releases werden weiterhin geprüft.", "Signed updates could not start. GitHub releases will still be checked.")
+            }
         }
         #endif
-        // Until the publisher adds their public signing key, checks can still
-        // show release information. This path never downloads or executes code.
+        // If Sparkle is unavailable, show release information from the same
+        // GitHub repository. This path never downloads or executes code.
         fallbackTimer = Timer.scheduledTimer(withTimeInterval: 6 * 60 * 60, repeats: true) { _ in
             Task { @MainActor in QuickOrbitUpdateCenter.shared.checkIfDue() }
         }
@@ -20794,11 +20801,19 @@ final class QuickOrbitUpdateCenter: NSObject, ObservableObject {
         #if canImport(Sparkle)
         updaterController?.updater.automaticallyChecksForUpdates = value
         #endif
-        if value && !signedUpdatesConfigured { checkIfDue() }
+        #if canImport(Sparkle)
+        if value && updaterController == nil { checkIfDue() }
+        #else
+        if value { checkIfDue() }
+        #endif
     }
 
     func setAutomaticInstallation(_ value: Bool) {
-        guard signedUpdatesConfigured else { return }
+        #if canImport(Sparkle)
+        guard updaterController != nil else { return }
+        #else
+        return
+        #endif
         automaticInstallation = value
         #if canImport(Sparkle)
         updaterController?.updater.automaticallyDownloadsUpdates = value
@@ -20828,7 +20843,7 @@ final class QuickOrbitUpdateCenter: NSObject, ObservableObject {
             guard let self else { return }
             defer { checking = false; checkTask = nil }
             do {
-                let url = URL(string: "https://api.github.com/repos/NicoT-111/QuickOrbit-App/releases/latest")!
+                let url = URL(string: "https://api.github.com/repos/\(quickOrbitReleaseRepository)/releases/latest")!
                 var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 25)
                 request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
                 request.setValue("QuickOrbit/\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "56")", forHTTPHeaderField: "User-Agent")
@@ -20854,9 +20869,11 @@ final class QuickOrbitUpdateCenter: NSObject, ObservableObject {
                 let current = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "56"
                 guard !release.draft, !release.prerelease,
                       version.range(of: "^[0-9]+(\\.[0-9]+){0,3}$", options: .regularExpression) != nil,
+                      release.assets.contains(where: { $0.name == "appcast.xml" }),
+                      release.assets.contains(where: { $0.name == "QuickOrbit-v\(version).zip" }),
                       let link = URL(string: release.html_url), link.scheme == "https",
                       link.host?.lowercased() == "github.com",
-                      link.path.lowercased().hasPrefix("/nicot-111/quickorbit/releases/") else { throw URLError(.cannotParseResponse) }
+                      link.path.lowercased() == "/\(quickOrbitReleaseRepository.lowercased())/releases/tag/\(release.tag_name.lowercased())" else { throw URLError(.cannotParseResponse) }
                 if version.compare(current, options: .numeric) == .orderedDescending {
                     let firstNotice = availableVersion != version
                     availableVersion = version
@@ -20913,6 +20930,11 @@ final class QuickOrbitUpdateCenter: NSObject, ObservableObject {
         let body: String?
         let draft: Bool
         let prerelease: Bool
+        let assets: [GitHubAsset]
+    }
+
+    private struct GitHubAsset: Decodable {
+        let name: String
     }
 }
 
