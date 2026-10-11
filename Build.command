@@ -83,10 +83,16 @@ sign_bundle() {
             --entitlements "$release_root/Packaging/QuickOrbit.entitlements" \
             --sign "$signing_identity" "$staged_app_bundle"
     else
-        # Local test builds remain ad-hoc signed. Public GitHub releases should set
-        # QUICKORBIT_SIGNING_IDENTITY to a Developer ID Application certificate.
-        codesign --force --deep \
-            --entitlements "$release_root/Packaging/QuickOrbit.entitlements" \
+        # Local test builds remain ad-hoc signed. Sign Sparkle helpers separately:
+        # --deep would copy the host sandbox entitlements onto Installer.xpc and
+        # prevent Sparkle from replacing the app outside the host sandbox.
+        local framework="$staged_app_bundle/Contents/Frameworks/Sparkle.framework"
+        codesign --force --options runtime --sign - "$framework/Versions/B/XPCServices/Installer.xpc"
+        codesign --force --options runtime --preserve-metadata=entitlements --sign - "$framework/Versions/B/XPCServices/Downloader.xpc"
+        codesign --force --options runtime --sign - "$framework/Versions/B/Autoupdate"
+        codesign --force --options runtime --sign - "$framework/Versions/B/Updater.app"
+        codesign --force --options runtime --sign - "$framework"
+        codesign --force --entitlements "$release_root/Packaging/QuickOrbit.entitlements" \
             --sign - "$staged_app_bundle"
     fi
 }
