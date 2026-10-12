@@ -1,17 +1,15 @@
 # QuickOrbit
 
-QuickOrbit ist eine macOS-App mit Orbit, Schnellleiste und lokalen Aktionen. Die [Website](https://nicot-111.github.io/QuickOrbit-Website/) liegt in einem eigenen Repository. **Die App und ihre Releases liegen hier.**
+QuickOrbit ist eine macOS-App mit Orbit, Schnellleiste und lokalen Aktionen.
 
-Die aktuelle App steht unter [Releases](https://github.com/NicoT-111/QuickOrbit-App/releases/latest). Für die manuelle Installation die ZIP herunterladen, entpacken, QuickOrbit beenden und `QuickOrbit.app` in „Programme“ ersetzen. Die App benötigt macOS 14 oder neuer. Manche Aktionen benötigen eine gesonderte macOS-Freigabe.
+[Website](https://nicot-111.github.io/QuickOrbit-Website/) · [Aktuelle Version herunterladen](https://github.com/NicoT-111/QuickOrbit-App/releases/latest)
 
-## Updates
+## Installation
 
-Ab Version 59 sind Update-Suche und Sparkle-Installer für die Sandbox konfiguriert. Die App lädt den signierten `appcast.xml`-Feed des neuesten Releases in diesem Repository. Für jedes Release werden `QuickOrbit-v<Version>.zip` und `appcast.xml` gemeinsam veröffentlicht.
+QuickOrbit benötigt macOS 14 oder neuer. Die aktuelle App findest du unter Releases. Bei einer DMG ziehe `QuickOrbit.app` in „Programme“; bei einer ZIP entpacke sie zuerst. Beende eine bereits laufende QuickOrbit-App, bevor du sie ersetzt.
 
-Version 57 kann wegen fehlender Netzwerkberechtigung kein Update selbst abrufen. Version 56 nutzt außerdem einen nicht mehr erreichbaren Feed im alten Repository. Diese Versionen müssen einmalig manuell durch v59 ersetzt werden. Version 58 konnte den Feed laden, hatte aber noch nicht die vollständige Installer-Konfiguration. Details stehen in [Update-Einrichtung](GitHub-Release/UPDATE-EINRICHTUNG.md).
+Updates kannst du in QuickOrbit über „Nach Updates suchen“ prüfen. Wenn die Installation eines Updates fehlschlägt, lade die aktuelle Version direkt unter Releases herunter.
 
-## Quellcode und Rechte
+## Rechte
 
-Der Quellcode ist hier zur Einsicht veröffentlicht; es wird **keine Open-Source-Lizenz** erteilt. Bitte [COPYRIGHT.md](COPYRIGHT.md) lesen. Das Ansehen und Forken innerhalb von GitHub bleibt nach dessen Nutzungsbedingungen möglich; darüber hinaus ist die Veröffentlichung keine Erlaubnis, die App oder den Code zu verändern oder weiterzuverbreiten. Die unveränderte offizielle App darf für den eigenen Gebrauch genutzt werden. Rechte von Drittanbietern bleiben unberührt.
-
-Zum lokalen Bauen im Terminal `zsh Build.command` ausführen. Es lädt bei Bedarf Sparkle 2.10.0 von dessen offizieller Release-Seite und prüft die SHA-256-Prüfsumme. Der private Updateschlüssel ist **nicht** Teil dieses Repositorys. Öffentliche Releases für andere Macs sollten mit Developer ID signiert und von Apple notarisiert sein; lokale Test-Builds werden nur ad-hoc signiert.
+Der Quellcode ist zur Einsicht veröffentlicht. Es wird keine Open-Source-Lizenz erteilt. Die unveränderte offizielle App darf für den eigenen Gebrauch genutzt werden. Weitere Informationen stehen in [COPYRIGHT.md](COPYRIGHT.md). Rechte von Drittanbietern bleiben unberührt.
